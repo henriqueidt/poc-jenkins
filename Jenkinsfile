@@ -6,7 +6,8 @@ pipeline {
             steps {
                 echo "building states"
                 sh 'node -v' 
-                sh 'npm install' 
+                sh 'npm install'
+                sh "npm run build"
             }
         }
          stage('Test') { 
@@ -19,7 +20,6 @@ pipeline {
          stage('Deploy') { 
             steps {
                 echo "Deploying..."
-                sh "npm run build"
             }
         }
     }

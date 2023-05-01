@@ -21,15 +21,11 @@ pipeline {
             steps {
                 input message: "Do you want to deploy this build to production?",
                     submitter: "dev",
-                    parameters: [
-                        choice(choices: [
-                            'Yes',
-                            'No'
-                        ],
-                        description: 'Choose whether to deploy or not')
-                    ]
+                    parameters: {
+                        { choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one') }
+                    }
                 script {
-                    if(params.confirm) {
+                    if(params.CHOICES == 'yes') {
                         echo "Deploying..."
                     } else {
                         echo 'Deployment cancelled'

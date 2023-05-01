@@ -27,9 +27,9 @@ pipeline {
             } 
             
             steps {
-                echo "Choice: ${params.CHOICE}"
+                echo "Choice: ${CHOICE}"
                 script {
-                    if(params.CHOICES == 'yes') {
+                    if(CHOICE == 'yes') {
                         echo "Deploying..."
                     } else {
                         echo 'Deployment cancelled'

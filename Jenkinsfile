@@ -22,7 +22,7 @@ pipeline {
                 input {
                     message: "Do you want to deploy this build to production?"
                     submitter: "dev"
-                    parameters: {
+                    parameters {
                         choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one')
                     }
                 } 

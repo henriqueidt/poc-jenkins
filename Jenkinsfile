@@ -22,12 +22,12 @@ pipeline {
                 message "Do you want to deploy this build to production?"
                 submitter "dev"
                 parameters {
-                    choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one')
+                    choice(name: 'CHOICE', choices: ['yes', 'no'], description: 'Select one')
                 }
             } 
             
             steps {
-                echo "Choice: ${params.CHOICES}"
+                echo "Choice: ${params.CHOICE}"
                 script {
                     if(params.CHOICES == 'yes') {
                         echo "Deploying..."

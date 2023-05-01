@@ -18,22 +18,20 @@ pipeline {
         }
          
          stage('Deploy') { 
-            steps {
-                input {
-                    message: "Do you want to deploy this build to production?"
-                    submitter: "dev"
-                    parameters {
-                        choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one')
-                    }
-                } 
-   
-                script {
-                    if(params.CHOICES == 'yes') {
-                        echo "Deploying..."
-                    } else {
-                        echo 'Deployment cancelled'
-                        currentBuild.result = 'ABORTED'
-                    }
+            input {
+                message "Do you want to deploy this build to production?"
+                submitter "dev"
+                parameters {
+                    choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one')
+                }
+            } 
+
+            script {
+                if(params.CHOICES == 'yes') {
+                    echo "Deploying..."
+                } else {
+                    echo 'Deployment cancelled'
+                    currentBuild.result = 'ABORTED'
                 }
             }
         }

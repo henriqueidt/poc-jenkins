@@ -25,13 +25,15 @@ pipeline {
                     choice(name: 'CHOICES', choices: ['yes', 'no'], description: 'Select one')
                 }
             } 
-
-            script {
-                if(params.CHOICES == 'yes') {
-                    echo "Deploying..."
-                } else {
-                    echo 'Deployment cancelled'
-                    currentBuild.result = 'ABORTED'
+            
+            steps {
+                script {
+                    if(params.CHOICES == 'yes') {
+                        echo "Deploying..."
+                    } else {
+                        echo 'Deployment cancelled'
+                        currentBuild.result = 'ABORTED'
+                    }
                 }
             }
         }

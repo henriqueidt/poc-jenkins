@@ -19,7 +19,23 @@ pipeline {
          
          stage('Deploy') { 
             steps {
-                echo "Deploying..."
+                input message: "Do you want to deploy this build to production?",
+                    submitter: "dev",
+                    parameters: [
+                        choice(choices: [
+                            'Yes',
+                            'No'
+                        ],
+                        description: 'Choose whether to deploy or not')
+                    ]
+                script {
+                    if(params.confirm) {
+                        echo "Deploying..."
+                    } else {
+                        echo 'Deployment cancelled'
+                        currentBuild.result = 'ABORTED'
+                    }
+                }
             }
         }
     }

@@ -27,6 +27,7 @@ pipeline {
             } 
             
             steps {
+                echo "Choice: ${params.CHOICES}"
                 script {
                     if(params.CHOICES == 'yes') {
                         echo "Deploying..."

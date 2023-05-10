@@ -31,6 +31,8 @@ pipeline {
                 script {
                     if(CHOICE == 'yes') {
                         echo "Deploying..."
+                        docker build . -t poc-jenkins
+                        docker run -d --name nodejs-app-container -p 3000:3000 poc-jenkins
                     } else {
                         echo 'Deployment cancelled'
                         currentBuild.result = 'ABORTED'
